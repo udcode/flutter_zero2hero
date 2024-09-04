@@ -70,6 +70,21 @@ class MyApp extends StatelessWidget {
                   ],
                 ),
               ),
+              SizedBox(height: 20), // SizedBox for spacing
+              ...List.generate(20, (index) {
+                return Container(
+                  padding: EdgeInsets.all(16),
+                  margin: EdgeInsets.symmetric(vertical: 10),
+                  decoration: BoxDecoration(
+                    color: Colors.purple,
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Text(
+                    'Container $index',
+                    style: TextStyle(color: Colors.white, fontSize: 18),
+                  ),
+                );
+              }),
             ],
           ),
         ),
