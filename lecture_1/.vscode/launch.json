@@ -1,0 +1,33 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "lecture_1",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "lecture_1_repaintBoundry (debug mode)",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/repaint_boundry.main.dart",
+            "args": [],
+            "flutterMode": "debug"
+        },
+        {
+            "name": "lecture_1 (profile mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "lecture_1 (release mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        }
+    ]
+}
