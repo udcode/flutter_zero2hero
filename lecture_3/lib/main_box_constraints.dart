@@ -16,13 +16,27 @@ class MyApp extends StatelessWidget {
           child: ConstrainedBox(
             constraints: BoxConstraints(
               maxWidth: 300,  // רוחב מקסימלי של 300 פיקסלים
-              // minHeight: 650, // גובה מינימלי של 150 פיקסלים
+              minHeight: 100, // גובה מינימלי של 650 פיקסלים
+              maxHeight: 120,
             ),
             child: Container(
               color: Colors.blue, // צבע רקע לכחול להמחשה
 
               child: Text(
-                'זהו Container עם הגבלות!',
+                '''
+                adflajsjkasdfas
+                alsdfjaksdjf
+                alsdfjalkjf
+                asdlkjasldfj
+                asldjkaslfj
+                asdlkjasldfajsdf
+                alsdfjalsdfj
+                alsdjkasdf
+                lasdfj
+                
+                ''',
+
+                overflow: TextOverflow.ellipsis,
                 style: TextStyle(color: Colors.white, fontSize: 18),
                 textAlign: TextAlign.center,
               ),
