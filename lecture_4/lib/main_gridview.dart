@@ -8,15 +8,16 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(title: Text('GridView Example')),
-        body: _getGridViewCount(),
+        body: _getGridViewExtent(),
       ),
     );
   }
 
   Widget _getGridViewCount() {
     return GridView.count(
-      crossAxisCount: 2,
-      crossAxisSpacing: 10,
+scrollDirection: Axis.vertical,
+      crossAxisCount: 3,
+      crossAxisSpacing: 30,
       mainAxisSpacing: 10,
       children: <Widget>[
         Container(color: Colors.red),
@@ -29,8 +30,9 @@ class MyApp extends StatelessWidget {
 
   Widget _getGridViewBuilder() {
     return GridView.builder(
+      scrollDirection: Axis.horizontal,
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 3,
+        crossAxisCount:6,
         crossAxisSpacing: 10,
         mainAxisSpacing: 10,
       ),
@@ -46,7 +48,8 @@ class MyApp extends StatelessWidget {
 
   Widget _getGridViewExtent() {
     return GridView.extent(
-      maxCrossAxisExtent: 150,
+      maxCrossAxisExtent: 300,
+      scrollDirection: Axis.horizontal,
       children: <Widget>[
         Container(color: Colors.red),
         Container(color: Colors.green),
