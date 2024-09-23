@@ -9,6 +9,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       initialRoute: '/',
+      onUnknownRoute: (settings) {
+        return MaterialPageRoute(builder: (context) => NotFoundScreen());
+      },
       // הגדרת onGenerateRoute כדי לטפל בנתיבים דינמיים
       onGenerateRoute: (settings) {
         if (settings.name == '/') {
@@ -20,7 +23,7 @@ class MyApp extends StatelessWidget {
           );
         }
         // אם הנתיב לא נמצא - מעבר למסך 404
-        return MaterialPageRoute(builder: (context) => NotFoundScreen());
+        return null;
       },
     );
   }
