@@ -36,7 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
               final returnedResult = await Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => DetailsScreen(data: "Hello from Home Screen"),
+                  builder: (context) => DetailsScreen(data: "Hello from Home Scree2222n"),
                 ),
               );
               // החזרת התוצאה למסך הראשי
@@ -54,28 +54,55 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
-class DetailsScreen extends StatelessWidget {
+class DetailsScreen extends StatefulWidget {
   final String data;
 
   DetailsScreen({required this.data});
 
   @override
+  State<DetailsScreen> createState() => _DetailsScreenState();
+}
+
+class _DetailsScreenState extends State<DetailsScreen> {
+  bool canPop = false;
+
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text("Details Screen")),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text("Data from Home Screen: $data"),
-          SizedBox(height: 20),
-          ElevatedButton(
-            onPressed: () {
-              // Navigator.pop() מחזיר תוצאה למסך הראשי.
-              Navigator.pop(context, "Result from Details Screen");
-            },
-            child: Text("Return to Home Screen with Result"),
-          ),
-        ],
+    return PopScope(
+      canPop: canPop,
+      onPopInvokedWithResult: (bool didPop, Object? result) async {
+        if (didPop) {
+          return;
+        }
+        if(canPop){
+          return;
+        }
+
+        if (context.mounted && true) {
+          Navigator.pop(context,'some value');
+        }
+      },
+      child: Scaffold(
+        appBar: AppBar(title: Text("Details Screen")),
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text("Data from Home Screen: ${widget.data}"),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                setState(() {
+                  canPop = true;
+                });
+
+                // Navigator.pop() מחזיר תוצאה למסך הראשי.
+                Navigator.maybePop(context, "Result from Details Screen");
+              },
+              child: Text("Return to Home Screen with Result"),
+            ),
+          ],
+        ),
       ),
     );
   }

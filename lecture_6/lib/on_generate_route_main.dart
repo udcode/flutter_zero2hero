@@ -9,9 +9,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       initialRoute: '/',
-      onUnknownRoute: (settings) {
-        return MaterialPageRoute(builder: (context) => NotFoundScreen());
-      },
+      // onUnknownRoute: (settings) {
+      //   return MaterialPageRoute(builder: (context) => NotFoundScreen());
+      // },
       // הגדרת onGenerateRoute כדי לטפל בנתיבים דינמיים
       onGenerateRoute: (settings) {
         if (settings.name == '/') {
@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
           );
         }
         // אם הנתיב לא נמצא - מעבר למסך 404
-        return null;
+        return MaterialPageRoute(builder: (context) => NotFoundScreen());
       },
     );
   }
@@ -40,7 +40,7 @@ class HomeScreen extends StatelessWidget {
             child: ElevatedButton(
               onPressed: () {
                 // מעבר לנתיב דינמי עם מזהה מוצר
-                Navigator.pushNamed(context, '/product/123');
+                Navigator.pushNamed(context, '/product/125');
               },
               child: Text("Go to Product 123"),
             ),
