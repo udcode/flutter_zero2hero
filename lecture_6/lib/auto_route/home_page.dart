@@ -53,6 +53,16 @@ class _HomePageState extends State<HomePage> {
               },
               child: Text("Go to Very Nested Route 130"),
             ),
+
+
+            //navigate to dashboard
+            ElevatedButton(
+              onPressed: () {
+                // Navigate to the dashboard page
+                AutoRouter.of(context).pushNamed('/dashboard');
+              },
+              child: Text("Go to Dashboard"),
+            ),
           ],
         ),
       ),

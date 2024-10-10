@@ -8,16 +8,36 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i4;
-import 'package:flutter/material.dart' as _i5;
-import 'package:lecture_6/auto_route/home_page.dart' as _i1;
-import 'package:lecture_6/auto_route/login_page.dart' as _i2;
-import 'package:lecture_6/auto_route/product.dart' as _i3;
+import 'package:auto_route/auto_route.dart' as _i5;
+import 'package:flutter/material.dart' as _i6;
+import 'package:lecture_6/auto_route/dashboard.dart' as _i1;
+import 'package:lecture_6/auto_route/home_page.dart' as _i2;
+import 'package:lecture_6/auto_route/login_page.dart' as _i3;
+import 'package:lecture_6/auto_route/product.dart' as _i4;
 
 /// generated route for
-/// [_i1.HomePage]
-class HomeRoute extends _i4.PageRouteInfo<void> {
-  const HomeRoute({List<_i4.PageRouteInfo>? children})
+/// [_i1.DashboardPage]
+class DashboardRoute extends _i5.PageRouteInfo<void> {
+  const DashboardRoute({List<_i5.PageRouteInfo>? children})
+      : super(
+          DashboardRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'DashboardRoute';
+
+  static _i5.PageInfo page = _i5.PageInfo(
+    name,
+    builder: (data) {
+      return _i1.DashboardPage();
+    },
+  );
+}
+
+/// generated route for
+/// [_i2.HomePage]
+class HomeRoute extends _i5.PageRouteInfo<void> {
+  const HomeRoute({List<_i5.PageRouteInfo>? children})
       : super(
           HomeRoute.name,
           initialChildren: children,
@@ -25,18 +45,18 @@ class HomeRoute extends _i4.PageRouteInfo<void> {
 
   static const String name = 'HomeRoute';
 
-  static _i4.PageInfo page = _i4.PageInfo(
+  static _i5.PageInfo page = _i5.PageInfo(
     name,
     builder: (data) {
-      return const _i1.HomePage();
+      return const _i2.HomePage();
     },
   );
 }
 
 /// generated route for
-/// [_i2.LoginPage]
-class LoginRoute extends _i4.PageRouteInfo<void> {
-  const LoginRoute({List<_i4.PageRouteInfo>? children})
+/// [_i3.LoginPage]
+class LoginRoute extends _i5.PageRouteInfo<void> {
+  const LoginRoute({List<_i5.PageRouteInfo>? children})
       : super(
           LoginRoute.name,
           initialChildren: children,
@@ -44,21 +64,40 @@ class LoginRoute extends _i4.PageRouteInfo<void> {
 
   static const String name = 'LoginRoute';
 
-  static _i4.PageInfo page = _i4.PageInfo(
+  static _i5.PageInfo page = _i5.PageInfo(
     name,
     builder: (data) {
-      return const _i2.LoginPage();
+      return const _i3.LoginPage();
     },
   );
 }
 
 /// generated route for
-/// [_i3.ProductPage]
-class ProductRoute extends _i4.PageRouteInfo<ProductRouteArgs> {
+/// [_i1.PostsPage]
+class PostsRoute extends _i5.PageRouteInfo<void> {
+  const PostsRoute({List<_i5.PageRouteInfo>? children})
+      : super(
+          PostsRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'PostsRoute';
+
+  static _i5.PageInfo page = _i5.PageInfo(
+    name,
+    builder: (data) {
+      return _i1.PostsPage();
+    },
+  );
+}
+
+/// generated route for
+/// [_i4.ProductPage]
+class ProductRoute extends _i5.PageRouteInfo<ProductRouteArgs> {
   ProductRoute({
-    _i5.Key? key,
-    required _i1.Product product,
-    List<_i4.PageRouteInfo>? children,
+    _i6.Key? key,
+    required _i2.Product product,
+    List<_i5.PageRouteInfo>? children,
   }) : super(
           ProductRoute.name,
           args: ProductRouteArgs(
@@ -70,11 +109,11 @@ class ProductRoute extends _i4.PageRouteInfo<ProductRouteArgs> {
 
   static const String name = 'ProductRoute';
 
-  static _i4.PageInfo page = _i4.PageInfo(
+  static _i5.PageInfo page = _i5.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<ProductRouteArgs>();
-      return _i3.ProductPage(
+      return _i4.ProductPage(
         key: args.key,
         product: args.product,
       );
@@ -88,9 +127,9 @@ class ProductRouteArgs {
     required this.product,
   });
 
-  final _i5.Key? key;
+  final _i6.Key? key;
 
-  final _i1.Product product;
+  final _i2.Product product;
 
   @override
   String toString() {
@@ -99,12 +138,50 @@ class ProductRouteArgs {
 }
 
 /// generated route for
-/// [_i3.VeryNestedRoutePage]
-class VeryNestedRouteRoute extends _i4.PageRouteInfo<VeryNestedRouteRouteArgs> {
+/// [_i1.SettingsPage]
+class SettingsRoute extends _i5.PageRouteInfo<void> {
+  const SettingsRoute({List<_i5.PageRouteInfo>? children})
+      : super(
+          SettingsRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'SettingsRoute';
+
+  static _i5.PageInfo page = _i5.PageInfo(
+    name,
+    builder: (data) {
+      return _i1.SettingsPage();
+    },
+  );
+}
+
+/// generated route for
+/// [_i1.UsersPage]
+class UsersRoute extends _i5.PageRouteInfo<void> {
+  const UsersRoute({List<_i5.PageRouteInfo>? children})
+      : super(
+          UsersRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'UsersRoute';
+
+  static _i5.PageInfo page = _i5.PageInfo(
+    name,
+    builder: (data) {
+      return _i1.UsersPage();
+    },
+  );
+}
+
+/// generated route for
+/// [_i4.VeryNestedRoutePage]
+class VeryNestedRouteRoute extends _i5.PageRouteInfo<VeryNestedRouteRouteArgs> {
   VeryNestedRouteRoute({
-    _i5.Key? key,
+    _i6.Key? key,
     required int id,
-    List<_i4.PageRouteInfo>? children,
+    List<_i5.PageRouteInfo>? children,
   }) : super(
           VeryNestedRouteRoute.name,
           args: VeryNestedRouteRouteArgs(
@@ -117,14 +194,14 @@ class VeryNestedRouteRoute extends _i4.PageRouteInfo<VeryNestedRouteRouteArgs> {
 
   static const String name = 'VeryNestedRouteRoute';
 
-  static _i4.PageInfo page = _i4.PageInfo(
+  static _i5.PageInfo page = _i5.PageInfo(
     name,
     builder: (data) {
       final pathParams = data.inheritedPathParams;
       final args = data.argsAs<VeryNestedRouteRouteArgs>(
           orElse: () =>
               VeryNestedRouteRouteArgs(id: pathParams.getInt('nestedId')));
-      return _i3.VeryNestedRoutePage(
+      return _i4.VeryNestedRoutePage(
         key: args.key,
         id: args.id,
       );
@@ -138,7 +215,7 @@ class VeryNestedRouteRouteArgs {
     required this.id,
   });
 
-  final _i5.Key? key;
+  final _i6.Key? key;
 
   final int id;
 

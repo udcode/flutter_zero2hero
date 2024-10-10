@@ -25,6 +25,27 @@ class AppRouter extends RootStackRouter {
 
     ),
     AutoRoute(
+      path: '/dashboard',
+      page: DashboardRoute.page,
+      children: [
+        RedirectRoute(path: '', redirectTo: 'users'),
+        CustomRoute(
+          page: UsersRoute.page,
+          path: 'users',
+          // TransitionsBuilders class contains a preset of common transitions builders.
+          transitionsBuilder: TransitionsBuilders.slideBottom,
+          durationInMilliseconds: 400,
+        ),
+        CustomRoute(
+          page: SettingsRoute.page,
+          path: 'settings',
+          transitionsBuilder: TransitionsBuilders.slideRight,
+          durationInMilliseconds: 400,
+        ),
+        CustomRoute(page: PostsRoute.page, path: 'posts'),
+      ],
+    ),
+    AutoRoute(
       path: '/product/:id/veryNestedRoute/:nestedId',
       page: VeryNestedRouteRoute.page,
 
