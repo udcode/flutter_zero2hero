@@ -8,6 +8,7 @@ class RemoteFetchCubit extends Cubit<RemoteFetchState> {
 
 
   Future<void> fetchDataWithTimeout() async {
+    emit(state.clone());
     try {
       final response = await http
           .get(
