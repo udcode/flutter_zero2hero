@@ -25,7 +25,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     CancelToken cancelToken = CancelToken();
-   usersApi.getUsers();
+
    todosApi.getTodos();
 usersApi.getUser('sdkjsdk');
     super.initState();
