@@ -12,13 +12,15 @@ class App extends StatefulWidget {
   @override
   State<App> createState() => _AppState();
 }
-
+StreamController<int> streamController = StreamController<int>.broadcast();
 class _AppState extends State<App> {
   // make sure you don't initiate your router
   CancelableOperation? cancelableOperation;
 
   @override
   Widget build(BuildContext context) {
+   //pause the stream
+
     return MaterialApp(
       builder: EasyLoading.init(),
       home: Scaffold(

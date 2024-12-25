@@ -1,0 +1,90 @@
+swagger: "2.0"
+info:
+  title: "User API"
+  description: "API for managing user information"
+  version: "1.0.0"
+host: "api.example.com"
+basePath: "/v1"
+schemes:
+  - "https"
+paths:
+  /users:
+    get:
+      summary: "Get list of users"
+      description: "Retrieves a list of users"
+      produces:
+        - "application/json"
+      responses:
+        "200":
+          description: "A list of users"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/User"
+    post:
+      summary: "Create a new user"
+      description: "Creates a new user in the system"
+      consumes:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "user"
+          description: "User object to be created"
+          required: true
+          schema:
+            $ref: "#/definitions/User"
+      responses:
+        "201":
+          description: "User created successfully"
+          schema:
+            $ref: "#/definitions/User"
+  /users/{userId}:
+    get:
+      summary: "Get user by ID"
+      description: "Retrieves a single user by ID"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "userId"
+          in: "path"
+          required: true
+          type: "string"
+      responses:
+        "200":
+          description: "User found"
+          schema:
+            $ref: "#/definitions/User"
+        "404":
+          description: "User not found"
+definitions:
+  User:
+    type: "object"
+    required:
+      - "id"
+      - "name"
+      - "email"
+    properties:
+      id:
+        type: "string"
+        example: "12345"
+      name:
+        type: "string"
+        example: "John Doe"
+      email:
+        type: "string"
+        format: "email"
+        example: "johndoe@example.com"
+      age:
+        type: "integer"
+        example: 30
+      gender:
+        type: "string"
+        enum:
+          - "male"
+          - "female"
+          - "other"
+        example: "male"
+      createdAt:
+        type: "string"
+        format: "date-time"
+        example: "2024-10-31T08:30:00Z"
