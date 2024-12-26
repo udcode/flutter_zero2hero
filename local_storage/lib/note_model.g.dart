@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'main.dart';
+part of 'note_model.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
@@ -19,17 +19,20 @@ class HivedNoteAdapter extends TypeAdapter<HivedNote> {
     return HivedNote(
       fields[0] as String,
       fields[1] as DateTime,
+      fields[2] == null ? '' : fields[2] as String,
     );
   }
 
   @override
   void write(BinaryWriter writer, HivedNote obj) {
     writer
-      ..writeByte(2)
+      ..writeByte(3)
       ..writeByte(0)
       ..write(obj.note)
       ..writeByte(1)
-      ..write(obj.createdAt);
+      ..write(obj.createdAt)
+      ..writeByte(2)
+      ..write(obj.id);
   }
 
   @override
@@ -50,9 +53,11 @@ class HivedNoteAdapter extends TypeAdapter<HivedNote> {
 HivedNote _$HivedNoteFromJson(Map<String, dynamic> json) => HivedNote(
       json['note'] as String,
       DateTime.parse(json['createdAt'] as String),
+      json['id'] as String,
     );
 
 Map<String, dynamic> _$HivedNoteToJson(HivedNote instance) => <String, dynamic>{
       'note': instance.note,
       'createdAt': instance.createdAt.toIso8601String(),
+      'id': instance.id,
     };

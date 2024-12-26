@@ -2,10 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:json_annotation/json_annotation.dart';
-part 'main.g.dart';
+import 'package:local_storage/ioc.dart';
+import 'package:local_storage/task_repo.dart';
+
+import 'note_model.dart';
+
 void main() async {
-  await Hive.initFlutter();
-  Hive.registerAdapter(HivedNoteAdapter());
+  await configureDependencies();
+  // await Hive.initFlutter();
+  // Hive.registerAdapter(HivedNoteAdapter());
   runApp(NotesApp());
 }
 
@@ -24,16 +29,17 @@ class NotesPage extends StatefulWidget {
 }
 
 class _NotesPageState extends State<NotesPage> {
-   Box<HivedNote>? notesBox;
+   // Box<HivedNote>? notesBox;
 
   @override
   void initState() {
     super.initState();
-    openBox();
+    // openBox();
+    // getIt<TaskRepository>().getTasks();
   }
 
   Future<void> openBox() async {
-    notesBox = await Hive.openBox<HivedNote>('notes');
+    // notesBox = await Hive.openBox<HivedNote>('notes');
     setState(() {});
   }
 
@@ -41,25 +47,30 @@ class _NotesPageState extends State<NotesPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Notes Manager')),
-      body: notesBox?.isOpen == true
-          ? ListView.builder(
-        itemCount: notesBox!.length,
+      // body: notesBox?.isOpen == true
+      //     ? ListView.builder(
+      body: ListView.builder(
+        // itemCount: notesBox!.length,
+        itemCount: getIt<TaskRepository>().getTasks().length,
         itemBuilder: (context, index) {
-          final note = notesBox!.getAt(index);
-
+          // final note = notesBox!.getAt(index);
+final note = getIt<TaskRepository>().getTasks()[index];
           return ListTile(
             title: Text(note!.note),
+            subtitle: Text(note!.createdAt.toString()),
             trailing: IconButton(
               icon: Icon(Icons.delete),
               onPressed: () {
-                notesBox!.deleteAt(index);
+                // notesBox!.deleteAt(index);
+                final taskRepo = getIt<TaskRepository>();
+                taskRepo.deleteTask(note.id!);
                 setState(() {});
               },
             ),
           );
         },
-      )
-          : Center(child: CircularProgressIndicator()),
+      ),
+          // : Center(child: CircularProgressIndicator()),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           final newNote = await showDialog<String>(
@@ -67,8 +78,11 @@ class _NotesPageState extends State<NotesPage> {
             builder: (context) => AddNoteDialog(),
           );
           if (newNote != null) {
-            var hivedNote = HivedNote(newNote,DateTime.now());
-            notesBox!.add(hivedNote);
+            var hivedNote = HivedNote(newNote,DateTime.now(),newNote);
+            final taskRepo = getIt<TaskRepository>();
+
+            taskRepo.saveTask(hivedNote);
+            // notesBox!.add(hivedNote);
             setState(() {});
           }
         },
@@ -78,20 +92,7 @@ class _NotesPageState extends State<NotesPage> {
   }
 }
 
-@HiveType(typeId: 0)
-@JsonSerializable()
-class HivedNote {
-  @HiveField(0)
-  final String note;
-  @HiveField(1)
-  final DateTime createdAt;
 
-  HivedNote(this.note,this.createdAt);
-
-  factory HivedNote.fromJson(Map<String, dynamic> json) => _$HivedNoteFromJson(json);
-
-  Map<String, dynamic> toJson() => _$HivedNoteToJson(this);
-}
 
 class AddNoteDialog extends StatelessWidget {
   final TextEditingController controller = TextEditingController();
