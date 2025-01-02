@@ -28,7 +28,7 @@ extension GetItInjectableX on _i174.GetIt {
     );
     final hiveModule = _$HiveModule();
     await gh.factoryAsync<_i744.Box<dynamic>>(
-      () => hiveModule.provideBox(),
+      () => hiveModule.provideNotesBox(),
       preResolve: true,
     );
     gh.singleton<_i502.TaskRepository>(

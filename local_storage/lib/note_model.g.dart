@@ -17,22 +17,15 @@ class HivedNoteAdapter extends TypeAdapter<HivedNote> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return HivedNote(
-      fields[0] as String,
-      fields[1] as DateTime,
-      fields[2] == null ? '' : fields[2] as String,
+      note: fields[0] as String? ?? '',
+      createdAt: fields[1] as DateTime,
+      id: fields[2] as String,
     );
   }
 
   @override
   void write(BinaryWriter writer, HivedNote obj) {
-    writer
-      ..writeByte(3)
-      ..writeByte(0)
-      ..write(obj.note)
-      ..writeByte(1)
-      ..write(obj.createdAt)
-      ..writeByte(2)
-      ..write(obj.id);
+    writer.writeByte(0);
   }
 
   @override
@@ -51,9 +44,9 @@ class HivedNoteAdapter extends TypeAdapter<HivedNote> {
 // **************************************************************************
 
 HivedNote _$HivedNoteFromJson(Map<String, dynamic> json) => HivedNote(
-      json['note'] as String,
-      DateTime.parse(json['createdAt'] as String),
-      json['id'] as String,
+      note: json['note'] as String? ?? '',
+      createdAt: DateTime.parse(json['createdAt'] as String),
+      id: json['id'] as String,
     );
 
 Map<String, dynamic> _$HivedNoteToJson(HivedNote instance) => <String, dynamic>{

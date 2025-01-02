@@ -2,18 +2,22 @@ import 'package:hive/hive.dart';
 
 import 'package:hive_flutter/adapters.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:local_storage/note_entity.dart';
 part 'note_model.g.dart';
 @HiveType(typeId: 0)
 @JsonSerializable()
-class HivedNote {
-  @HiveField(0)
+class HivedNote extends NoteEntity{
+  // @HiveField(0)
+  @override
   final String note;
-  @HiveField(1)
+  // @HiveField(1)
+  @override
   final DateTime createdAt;
-  @HiveField(2,defaultValue: '')
+  // @HiveField(2,defaultValue: '')
+  @override
   final String id;
 
-  HivedNote(this.note,this.createdAt,this.id);
+  HivedNote({ this.note = '',required this.createdAt,required this.id}) : super(note: '', createdAt: createdAt, id: '');
 
   factory HivedNote.fromJson(Map<String, dynamic> json) => _$HivedNoteFromJson(json);
 

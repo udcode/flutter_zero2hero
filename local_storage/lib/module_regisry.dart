@@ -7,10 +7,14 @@ import 'note_model.dart';
 @module
 abstract class HiveModule {
   @preResolve
-  Future<Box> provideBox() async {
+  Future<Box> provideNotesBox() async {
     await Hive.initFlutter();
-    Hive.registerAdapter(HivedNoteAdapter());
-
-    return Hive.openBox<HivedNote>('notes');
+    if(!Hive.isAdapterRegistered(HivedNoteAdapter().typeId)){
+      Hive.registerAdapter(HivedNoteAdapter());
+    }
+    if(!Hive.isBoxOpen('notes')){
+      return Hive.openBox<HivedNote>('notes');
+    }
+    return Hive.box('notes');
   }
 }

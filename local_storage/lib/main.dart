@@ -78,7 +78,7 @@ final note = getIt<TaskRepository>().getTasks()[index];
             builder: (context) => AddNoteDialog(),
           );
           if (newNote != null) {
-            var hivedNote = HivedNote(newNote,DateTime.now(),newNote);
+            var hivedNote = HivedNote(note:newNote,createdAt:  DateTime.now(),id:newNote);
             final taskRepo = getIt<TaskRepository>();
 
             taskRepo.saveTask(hivedNote);
