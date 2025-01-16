@@ -74,9 +74,11 @@ class _HomePageWorkerState extends State<HomePageWorker> {
   }
 
   String messageFromIsolate = 'No message yet';
+StreamController<int> delayStream = StreamController<int>.broadcast();
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(title: Text('Worker Example')),
       body: FutureBuilder<bool>(

@@ -42,7 +42,7 @@ class AppRouter extends RootStackRouter {
           transitionsBuilder: TransitionsBuilders.slideRight,
           durationInMilliseconds: 400,
         ),
-        CustomRoute(page: PostsRoute.page, path: 'posts'),
+        AutoRoute(page: PostsRoute.page, path: 'posts'),
       ],
     ),
     AutoRoute(
